@@ -62,13 +62,13 @@ RUN     wget https://github.com/atom/atom/releases/download/v1.17.2/atom-amd64.d
         && rm -rf atom-amd64.deb \
 		&& pip install  setuptools \
 		&& pip install  flake8 \
-						flake8-docstrings \
+                        flake8-docstrings \
     	&& apm install  linter \
-				 		linter-ui-default \
-						intentions \
-						busy-signal \
-						linter-flake8 \
-						script 
+                        linter-ui-default \
+                        intentions \
+                        busy-signal \
+                        linter-flake8 \
+                        script 
 	 
 
 
