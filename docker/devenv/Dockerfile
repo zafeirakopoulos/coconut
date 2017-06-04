@@ -9,8 +9,16 @@ LABEL maintainer "Zafeirakis Zafeirakopoulos" \
 		version = "0.1" \
 		description = "CoCoNuT development environment"
 
-echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-curl https://bazel.build/bazel-release.pub.gpg | apt-key add -
+RUN apt-get update \
+    &&  apt-get install --no-install-recommends -y \ 
+	apt-utils \
+	curl  \ 
+	gnupg2 \
+        ca-certificates \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list \
+    && curl https://bazel.build/bazel-release.pub.gpg | apt-key add -
 
 # Utilities
 RUN apt-get update \
@@ -21,7 +29,6 @@ RUN apt-get update \
         dialog \
         git \
         wget \
-        ca-certificates \
     # Compilers and Interpreters
         gcc \
         g++ \
